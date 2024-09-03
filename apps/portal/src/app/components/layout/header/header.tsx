@@ -1,29 +1,27 @@
 "use client";
 
 import {
-  Group,
-  rem,
-  AppShell,
-  Text,
-  Box,
-  Menu,
-  Button,
-  UnstyledButton,
-  useMantineColorScheme,
   ActionIcon,
+  AppShell,
+  Box,
+  Button,
+  Group,
+  Menu,
+  Text,
   Tooltip,
+  UnstyledButton,
+  rem,
+  useMantineColorScheme,
 } from "@mantine/core";
-import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import {
   IconChevronDown,
   IconMoon,
-  IconPhone,
-  IconShoppingCart,
-  IconSun,
+  IconSun
 } from "@tabler/icons-react";
 import Image from "next/image";
-import { iconDefaultProps, LanguagePicker } from "../../../../shared";
+import Link from "next/link";
+import { LanguagePicker, iconDefaultProps } from "../../../../shared";
 
 const Header: React.FC = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
