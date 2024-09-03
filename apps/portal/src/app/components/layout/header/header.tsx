@@ -9,27 +9,35 @@ import {
   Menu,
   Button,
   UnstyledButton,
+  useMantineColorScheme,
+  ActionIcon,
+  Tooltip,
 } from "@mantine/core";
 import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import {
   IconChevronDown,
+  IconMoon,
   IconPhone,
   IconShoppingCart,
+  IconSun,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import { iconDefaultProps } from "../../../../shared";
+import { iconDefaultProps, LanguagePicker } from "../../../../shared";
 
 const Header: React.FC = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <AppShell.Header
       withBorder={true}
+      className="sticky top-0 z-50 h-16 bg-card shadow-md"
       style={{
         position: "sticky",
         top: 0,
+        zIndex: 100,
         height: 70,
         backgroundColor: "var(--card)",
       }}
@@ -61,9 +69,7 @@ const Header: React.FC = () => {
                 </Group>
               </UnstyledButton>
             </Link>
-            <Link href="/about" passHref>
-              <UnstyledButton>About</UnstyledButton>
-            </Link>
+
             <Link href="/services" passHref>
               <Menu>
                 <Menu.Target>
@@ -93,26 +99,40 @@ const Header: React.FC = () => {
             <Link href="/contacts" passHref>
               <UnstyledButton>Contacts</UnstyledButton>
             </Link>
+            <Link href="/about" passHref>
+              <UnstyledButton>About</UnstyledButton>
+            </Link>
+            <Link href="/about" passHref>
+              <UnstyledButton>Testimonials</UnstyledButton>
+            </Link>
             <Link href="/blogs" passHref>
-              <UnstyledButton>Blogs</UnstyledButton>
+              <UnstyledButton>News</UnstyledButton>
             </Link>
           </Group>
 
           {/* Right End */}
           <Group gap="md" justify="end" align="center">
+            <Tooltip label="Toggle color scheme" withArrow>
+              <ActionIcon
+                onClick={() => toggleColorScheme()}
+                variant="default"
+                size="lg"
+                aria-label="Toggle color scheme"
+              >
+                {colorScheme === "light" ? (
+                  <IconMoon {...iconDefaultProps} stroke={1.5} />
+                ) : (
+                  <IconSun {...iconDefaultProps} stroke={1.5} />
+                )}
+              </ActionIcon>
+            </Tooltip>
+            <LanguagePicker />
             <Button
-              variant="outline"
-              leftSection={<IconShoppingCart {...iconDefaultProps} />}
+              color="var(--mantine-color-primary-7)"
+              size="md"
+              className="rounded-md"
+              variant="Filled"
             >
-              Cart
-            </Button>
-            <Button
-              variant="outline"
-              leftSection={<IconPhone {...iconDefaultProps} />}
-            >
-              Call Us
-            </Button>
-            <Button color="var(--mantine-color-primary-7)" variant="Filled">
               Book Appointment
             </Button>
           </Group>
