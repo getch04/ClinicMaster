@@ -1,5 +1,5 @@
 {
-  "name": "clinic master",
+  "name": "clinic-master",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -8,9 +8,18 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.2.5",
     "turbo": "^2.1.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "rimraf": "^5.0.1"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "pnpm lint",
+      "prettier --write"
+    ]
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {
