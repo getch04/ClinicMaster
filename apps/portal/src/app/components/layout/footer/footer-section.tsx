@@ -49,7 +49,7 @@ export function FooterSection() {
       <Divider className="my-8" />
       <Box className="flex flex-col md:flex-row justify-between items-center text-center mt-4 space-y-4 md:space-y-0">
         <Text size="sm" className="w-full md:w-auto mb-4 md:mb-0">
-          © 2024 Ethio Mart. All rights reserved.
+          © 2024 Dr Hilina Dental Clinic. All rights reserved.
         </Text>
         <Group className="justify-center mb-4 md:mb-0">
           <Text> Pay With</Text>

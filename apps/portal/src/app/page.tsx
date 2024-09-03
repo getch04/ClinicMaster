@@ -1,8 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import { Title } from "@mantine/core";
 import React from "react";
+import { Hero, ServiceSection } from "./components";
 
 export default function Home() {
-  return <Title>my clinic portal</Title>;
+  return (
+    <>
+      <Hero />;
+      <ServiceSection />
+    </>
+  );
 }
