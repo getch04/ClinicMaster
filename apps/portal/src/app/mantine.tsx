@@ -9,8 +9,7 @@ import { theme as baseTheme } from "@repo/theme/mantine";
 
 import { Notifications } from "@mantine/notifications";
 import { Suspense } from "react";
-import React from "react";
-import RootPortalLayout from "./_components/layout-wrapper";
+import RootPortalLayout from "./components/layout";
 
 interface RootStyleRegistryProps {
   readonly children: React.ReactNode;

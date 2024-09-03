@@ -15,6 +15,7 @@
     "react-dom": "18.3.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
+    "@repo/core": "workspace:*",
     "@repo/typescript-config": "workspace:*"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "eslint-config-next": "14.2.6",
     "typescript": "^5",
     "@repo/theme": "workspace:*",
+    "@repo/core": "workspace:*",
     "@repo/ui": "workspace:*",
     "postcss": "^8",
     "postcss-preset-mantine": "^1.7.0",
@@ -37,14 +39,15 @@
   "peerDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
+    "@repo/core": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*"
   },
   "optionalDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
+    "@repo/core": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*"
-
   }
 }
