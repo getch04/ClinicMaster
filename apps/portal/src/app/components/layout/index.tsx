@@ -1,9 +1,9 @@
 "use client";
 import { AppShell, Loader } from "@mantine/core";
-import { ScrollTopAffix, useIsMounted } from "../../_shared";
 import Header from "./header/header";
 import Main from "./main";
 import Footer from "./footer/footer";
+import { ScrollTopAffix, useIsMounted } from "../../../shared";
 
 const RootPortalLayout = ({ children }: { children: React.ReactNode }) => {
   const mounted = useIsMounted();

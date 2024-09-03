@@ -2,10 +2,6 @@
 
 import {
   Group,
-  Divider,
-  Burger,
-  Drawer,
-  ScrollArea,
   rem,
   AppShell,
   Text,
@@ -13,20 +9,16 @@ import {
   Menu,
   Button,
   UnstyledButton,
-  TextInput,
 } from "@mantine/core";
 import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import {
-  IconHome,
   IconChevronDown,
-  IconQuestionMark,
-  IconUserCircle,
   IconPhone,
   IconShoppingCart,
 } from "@tabler/icons-react";
-import { iconDefaultProps } from "../../../_shared";
 import Image from "next/image";
+import { iconDefaultProps } from "../../../../shared";
 
 const Header: React.FC = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -50,14 +42,15 @@ const Header: React.FC = () => {
         <Group justify="space-between" align="center">
           {/* Left End - Logo */}
           <Link href="/" passHref>
-            <UnstyledButton>
+            <Box className="flex items-center transform scale-75">
               <Image
                 src="/logo1.png"
                 alt="Logo"
-                width={130} // Adjust the width as needed
-                height={40} // Adjust the height as needed
+                width={130}
+                height={40}
+                className="mr-3"
               />
-            </UnstyledButton>
+            </Box>
           </Link>
           {/* Center Menu */}
           <Group gap="lg">
@@ -119,7 +112,9 @@ const Header: React.FC = () => {
             >
               Call Us
             </Button>
-            <Button variant="Filled">Book Appointment</Button>
+            <Button color="var(--mantine-color-primary-7)" variant="Filled">
+              Book Appointment
+            </Button>
           </Group>
         </Group>
       </Box>

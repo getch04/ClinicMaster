@@ -1,24 +1,53 @@
 {
-  "name": "core",
+  "name": "@repo/core",
   "version": "0.0.0",
   "private": true,
+  "main": "./index.tsx",
+  "types": "./index.tsx",
   "scripts": {
     "dev": "echo 'Add dev script here'",
     "build": "echo 'Add build script here'",
     "test": "echo 'Add test script here'",
     "lint": "echo 'Add lint script here'"
   },
+  "exports": {},
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/ui": "workspace:*"
+    "@repo/ui": "workspace:*",
+    "autoprefixer": "10.4.15",
+    "postcss": "8.4.28",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
+    "react": "^18.2.0",
+    "sass": "^1.69.4",
+    "tailwindcss": "3.3.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.1.0",
+    "@mantine/core": "^7.1.7",
+    "@mantine/dates": "^7.1.7",
+    "@mantine/dropzone": "^7.1.7",
+    "@mantine/form": "^7.1.7",
+    "@mantine/hooks": "^7.1.7",
+    "@mantine/modals": "^7.1.7",
+    "@mantine/next": "^6.0.19",
+    "@mantine/notifications": "^7.1.7"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/ui": "workspace:*"
+    "@repo/ui": "workspace:*",
+    "autoprefixer": "10.4.15",
+    "postcss": "8.4.28",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
+    "react": "^18.2.0",
+    "sass": "^1.69.4",
+    "tailwindcss": "3.3.3",
+    "typescript": "^5.1.0"
   },
   "peerDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -30,6 +59,16 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/ui": "workspace:*"
+    "@repo/ui": "workspace:*",
+    "autoprefixer": "10.4.15",
+    "postcss": "8.4.28",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
+    "react": "^18.2.0",
+    "sass": "^1.69.4",
+    "tailwindcss": "3.3.3",
+    "typescript": "^5.1.0"
   }
 }
