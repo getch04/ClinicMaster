@@ -1,58 +1,55 @@
-import { Box, Button, Image, Text, Title } from "@mantine/core";
+"use client";
+
+import { Button, Image } from "@mantine/core";
 
 export function Hero() {
   return (
     <div className="relative w-screen m-0 p-0 h-[700px]">
-      <div className="absolute inset-0 bg-white">
+      <div className="absolute inset-0">
         <Image
-          src={"hero2.png"} // Ensure this image is high quality
+          src={"hero1.jpg"}
           alt="Hero background"
-          style={{
-            filter: "initial",
-          }}
-          className="w-full h-full object-cover bg-white"
+          style={{ filter: "blur(1px)" }}
+          className="w-full h-full object-cover"
         />
       </div>
 
-      <Box className="relative grid grid-cols-1 md:grid-cols-2 h-full z-10 px-4 md:px-10">
-        <Box className="flex flex-col justify-center items-start space-y-4 px-4 md:px-[100px]">
-          <Title
-            size={"xl"}
-            fw={900}
-            className="text-3xl md:text-5xl font-bold leading-tight text-primary-600"
-          >
-            Love Your Smile
-          </Title>
-          <Text className=" max-w-lg  text-white text-sm md:text-base">
-            Experience exceptional dental care with our team of highly skilled
-            professionals. From routine check-ups to advanced procedures, we
-            provide comprehensive dental services to keep your smile healthy and
-            bright.
-          </Text>
-          <Text className=" max-w-lg text-sm text-white md:text-base">
-            Book an appointment today and take the first step towards a
-            healthier smile!
-          </Text>
-          <Box className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 h-full z-10 px-4 md:px-10">
+        <div className="flex flex-col justify-center items-start space-y-4 text-white px-4 md:px-[100px]">
+          <span className="text-md md:text-lg font-bold  text-primary">
+            Dental Perfection
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+            Creating Brighter <br /> Smiles Every Day
+          </h1>
+          <p className="text-gray-600 max-w-lg text-sm md:text-base">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
+          </p>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
             <Button
-              color="primary"
+              color="var(--mantine-color-primary-7)"
               size="md"
-              className="rounded-md   text-white hover:bg-primary-900"
-              variant="filled"
+              className="rounded-md"
+              variant="Filled"
             >
-              Book an Appointment
+              Learn More
             </Button>
-          </Box>
-        </Box>
+            <Button size="md" className="rounded-md" variant="outline">
+              Contact Us
+            </Button>
+          </div>
+        </div>
 
-        <Box className="flex justify-center md:justify-end items-center mt-2 md:mt-0">
+        <div className="flex justify-center md:justify-end items-center mt-6 md:mt-0">
           <Image
             src={"doc.png"}
-            alt="Dental Professional"
-            className="h-auto w-3/4 md:w-auto"
+            alt="Doctor"
+            className="h-auto w-3/4 md:h-full md:w-auto object-cover -scale-x-100"
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
     </div>
   );
 }
