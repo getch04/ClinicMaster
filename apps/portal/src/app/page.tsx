@@ -6,6 +6,7 @@ import {
   ServiceSection,
   Testimonials,
 } from "./components";
+import { AnimatedCounters } from "./components/status-counter";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <AboutUs />
       <ExpertsSection />
       <Testimonials />
+      <AnimatedCounters />
     </>
   );
 }
