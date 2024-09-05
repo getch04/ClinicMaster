@@ -74,7 +74,7 @@ importers:
         version: 5.0.10
       tailwindcss:
         specifier: ^3.4.10
-        version: 3.4.10(ts-node@10.9.1(typescript@5.5.4))
+        version: 3.4.10(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4))
       turbo:
         specifier: ^2.1.1
         version: 2.1.1
@@ -143,6 +143,9 @@ importers:
 
   apps/portal:
     dependencies:
+      add:
+        specifier: ^2.0.6
+        version: 2.0.6
       next:
         specifier: 14.2.6
         version: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
@@ -152,6 +155,9 @@ importers:
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
+      react-simple-typewriter:
+        specifier: ^5.0.1
+        version: 5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     optionalDependencies:
       '@repo/core':
         specifier: workspace:*
@@ -268,7 +274,7 @@ importers:
         version: 1.77.8
       tailwindcss:
         specifier: 3.3.3
-        version: 3.3.3(ts-node@10.9.1(typescript@5.5.4))
+        version: 3.3.3(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4))
       typescript:
         specifier: ^5.1.0
         version: 5.5.4
@@ -1068,6 +1074,9 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  add@2.0.6:
+    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
 
   agent-base@7.1.0:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
@@ -3025,6 +3034,13 @@ packages:
       '@types/react':
         optional: true
 
+  react-simple-typewriter@5.0.1:
+    resolution: {integrity: sha512-vA5HkABwJKL/DJ4RshSlY/igdr+FiVY4MLsSQYJX6FZG/f1/VwN4y1i3mPXRyfaswrvI8xii1kOVe1dYtO2Row==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
   react-smooth@4.0.1:
     resolution: {integrity: sha512-OE4hm7XqR0jNOq3Qmk9mFLyd6p2+j6bvbPJ7qlB7+oo0eNcL2l7WQzG6MBnT3EXY6xzkLMUBec3AfewJdA0J8w==}
     peerDependencies:
@@ -4715,6 +4731,8 @@ snapshots:
   acorn-walk@8.2.0: {}
 
   acorn@8.10.0: {}
+
+  add@2.0.6: {}
 
   agent-base@7.1.0:
     dependencies:
@@ -6846,13 +6864,13 @@ snapshots:
       postcss: 8.4.44
       ts-node: 10.9.1(@types/node@20.11.24)(typescript@5.4.5)
 
-  postcss-load-config@4.0.2(postcss@8.4.44)(ts-node@10.9.1(typescript@5.5.4)):
+  postcss-load-config@4.0.2(postcss@8.4.44)(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4)):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.0
     optionalDependencies:
       postcss: 8.4.44
-      ts-node: 10.9.1(typescript@5.5.4)
+      ts-node: 10.9.1(@types/node@20.11.24)(typescript@5.5.4)
 
   postcss-mixins@9.0.4(postcss@8.4.28):
     dependencies:
@@ -7036,6 +7054,11 @@ snapshots:
       use-sidecar: 1.1.2(@types/react@18.2.61)(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.2.61
+
+  react-simple-typewriter@5.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-smooth@4.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -7518,7 +7541,7 @@ snapshots:
 
   tabbable@6.2.0: {}
 
-  tailwindcss@3.3.3(ts-node@10.9.1(typescript@5.5.4)):
+  tailwindcss@3.3.3(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -7537,7 +7560,7 @@ snapshots:
       postcss: 8.4.44
       postcss-import: 15.1.0(postcss@8.4.44)
       postcss-js: 4.0.1(postcss@8.4.44)
-      postcss-load-config: 4.0.2(postcss@8.4.44)(ts-node@10.9.1(typescript@5.5.4))
+      postcss-load-config: 4.0.2(postcss@8.4.44)(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4))
       postcss-nested: 6.2.0(postcss@8.4.44)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
@@ -7573,7 +7596,7 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
-  tailwindcss@3.4.10(ts-node@10.9.1(typescript@5.5.4)):
+  tailwindcss@3.4.10(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -7592,7 +7615,7 @@ snapshots:
       postcss: 8.4.44
       postcss-import: 15.1.0(postcss@8.4.44)
       postcss-js: 4.0.1(postcss@8.4.44)
-      postcss-load-config: 4.0.2(postcss@8.4.44)(ts-node@10.9.1(typescript@5.5.4))
+      postcss-load-config: 4.0.2(postcss@8.4.44)(ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4))
       postcss-nested: 6.2.0(postcss@8.4.44)
       postcss-selector-parser: 6.1.2
       resolve: 1.22.8
@@ -7692,13 +7715,14 @@ snapshots:
       yn: 3.1.1
     optional: true
 
-  ts-node@10.9.1(typescript@5.5.4):
+  ts-node@10.9.1(@types/node@20.11.24)(typescript@5.5.4):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.9
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
+      '@types/node': 20.11.24
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
