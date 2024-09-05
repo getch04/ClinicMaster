@@ -1,12 +1,9 @@
 .wrapper {
-  padding-top: calc(var(--mantine-spacing-xl) * 4);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 4);
+  padding-top: calc(var(--mantine-spacing-xl) * 2);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
 }
 
 .title {
-  font-family:
-    Greycliff CF,
-    var(--mantine-font-family);
   font-weight: 900;
   margin-bottom: var(--mantine-spacing-md);
   text-align: center;
@@ -19,7 +16,6 @@
 
 .description {
   text-align: center;
-
   @media (max-width: car(--mantine-breakpoint-sm)) {
     text-align: left;
   }

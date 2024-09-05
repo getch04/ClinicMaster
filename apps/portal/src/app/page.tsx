@@ -1,11 +1,20 @@
 import React from "react";
-import { Hero, ServiceSection } from "./components";
+import {
+  AboutUs,
+  ExpertsSection,
+  Hero,
+  ServiceSection,
+  Testimonials,
+} from "./components";
 
 export default function Home() {
   return (
     <>
-      <Hero />;
+      <Hero />
       <ServiceSection />
+      <AboutUs />
+      <ExpertsSection />
+      <Testimonials />
     </>
   );
 }

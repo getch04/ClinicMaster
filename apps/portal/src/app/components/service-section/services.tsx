@@ -5,93 +5,139 @@ import {
   Text,
   Title,
   Container,
-  SimpleGrid,
+  Box,
+  Grid,
+  Image,
   rem,
+  Group,
+  Card,
 } from "@mantine/core";
-import { IconHeart, IconDental, IconStethoscope } from "@tabler/icons-react";
+import { IconDental, IconHeart, IconStethoscope } from "@tabler/icons-react";
 import classes from "./services.module.css";
 
+// Define service list
 export const DENTAL_SERVICES = [
   {
-    icon: IconDental,
-    title: "Comprehensive Dental Exams",
+    icon: "/service-icon-1.png",
+    title: "Root Canal",
     description:
-      "Regular dental exams are essential for maintaining healthy teeth and gums. Our comprehensive exams include a thorough check-up and personalized care plan.",
+      "Specialized care to relieve pain and protect your tooth from further damage with our root canal treatments.",
   },
   {
-    icon: IconHeart,
-    title: "Cosmetic Dentistry",
+    icon: "/service-icon-2.png",
+    title: "Cosmetic Teeth",
     description:
-      "Enhance the appearance of your smile with our cosmetic dentistry services, including teeth whitening, veneers, and bonding for a more confident you.",
+      "Get a perfect smile with our cosmetic teeth whitening, veneers, and other cosmetic dentistry solutions.",
   },
   {
-    icon: IconStethoscope,
-    title: "Pediatric Dentistry",
+    icon: "/service-icon-3.png",
+    title: "Free Consultation",
     description:
-      "Our specialized pediatric dentistry ensures your child’s dental care is comfortable and anxiety-free. We focus on education and prevention for lifelong oral health.",
+      "Receive expert advice through virtual consultations, offering care and guidance from the comfort of your home.",
   },
   {
-    icon: IconDental,
-    title: "Restorative Dentistry",
+    icon: "/service-icon-4.png",
+    title: "Alignment Teeth",
     description:
-      "From fillings and crowns to bridges and dentures, our restorative services aim to repair and restore your teeth to full function and natural beauty.",
+      "Straighten your teeth with advanced orthodontic treatments for improved aesthetics and function.",
   },
   {
-    icon: IconStethoscope,
-    title: "Emergency Dental Care",
+    icon: "/service-icon-5.png",
+    title: "Oral Hygiene",
     description:
-      "Dental emergencies can happen anytime. We provide prompt and effective emergency dental care to address pain, infections, and other urgent dental issues.",
+      "Comprehensive oral hygiene services to ensure your mouth stays healthy, clean, and fresh.",
+  },
+  {
+    icon: "/service-icon-6.png",
+    title: "Cavity Inspection",
+    description:
+      "Thorough cavity inspections to detect and treat decay early, preserving your natural teeth.",
   },
 ];
 
 interface FeatureProps {
-  icon: React.FC<any>;
+  icon: string;
   title: React.ReactNode;
   description: React.ReactNode;
 }
 
-export function Feature({ icon: Icon, title, description }: FeatureProps) {
+// Individual service item
+export function ServiceItem({ icon: Icon, title, description }: FeatureProps) {
   return (
-    <div>
-      <ThemeIcon variant="light" size={40} radius={40}>
-        <Icon style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-      </ThemeIcon>
-      <Text mt="sm" mb={7}>
-        {title}
-      </Text>
-      <Text size="sm" c="dimmed" lh={1.6}>
-        {description}
-      </Text>
-    </div>
+    <Card
+      className="transition-all my-4
+       duration-300 ease-in-out transform hover:cursor-pointer hover:-translate-y-2 
+       hover:shadow-xl hover:bg-gray-100"
+      shadow="sm"
+      radius="lg"
+      padding="lg"
+      style={{
+        backgroundColor: "var(--mantine-color-primary-0)",
+      }}
+    >
+      <Box style={{ textAlign: "center" }}>
+        {/* Icon and Title */}
+        <Group gap={4} className="flex-row items-center justify-center">
+          <ThemeIcon variant="light" size={40} radius={40}>
+            <Image src={`${Icon}`} />
+          </ThemeIcon>
+          <Text mt="sm" mb={7} fw={500} size="lg">
+            {title}
+          </Text>
+        </Group>
+
+        {/* Description */}
+        <Text size="sm" color="dimmed" lh={1.6} className="mt-4">
+          {description}
+        </Text>
+      </Box>
+    </Card>
   );
 }
 
+// Services section with image in center
 export function ServiceSection() {
-  const features = DENTAL_SERVICES.map((feature, index) => (
-    <Feature {...feature} key={index} />
+  const leftServices = DENTAL_SERVICES.slice(0, 3).map((feature, index) => (
+    <ServiceItem {...feature} key={index} />
+  ));
+  const rightServices = DENTAL_SERVICES.slice(3, 6).map((feature, index) => (
+    <ServiceItem {...feature} key={index} />
   ));
 
   return (
-    <Container className={classes.wrapper}>
-      <Title className={classes.title}>Our Dental Services</Title>
+    <Box className={"p-4 bg-gray-50"}>
+      <Container>
+        {/* Section Heading */}
+        <Box style={{ textAlign: "center", maxWidth: 600, margin: "0 auto" }}>
+          <Title className={classes.title}>Our Services</Title>
+          <Title className={"text-sm"}>Complete Dental Services</Title>
+        </Box>
 
-      <Container size={560} p={0}>
-        <Text size="sm" className={classes.description}>
-          At Dr. Hilina's Dental Clinic, we offer a comprehensive range of
-          services to meet all your dental care needs. Our experienced team is
-          committed to providing high-quality, personalized care.
-        </Text>
+        {/* Grid layout with services and center image */}
+        <Grid mt={30} gutter={50} align="center">
+          {/* Left Column Services */}
+          <Grid.Col span={4}>{leftServices}</Grid.Col>
+
+          {/* Center Image */}
+          <Grid.Col span={4}>
+            <Image
+              src="/service-banner.png"
+              alt="Dental services"
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "10px",
+                maxWidth: rem(300),
+                margin: "0 auto",
+              }}
+            />
+          </Grid.Col>
+
+          {/* Right Column Services */}
+          <Grid.Col span={4}>{rightServices}</Grid.Col>
+        </Grid>
       </Container>
-
-      <SimpleGrid
-        mt={60}
-        cols={{ base: 1, sm: 2, md: 3 }}
-        spacing={{ base: "xl", md: 50 }}
-        verticalSpacing={{ base: "xl", md: 50 }}
-      >
-        {features}
-      </SimpleGrid>
-    </Container>
+    </Box>
   );
 }
 

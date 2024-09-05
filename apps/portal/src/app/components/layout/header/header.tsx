@@ -14,11 +14,7 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  IconChevronDown,
-  IconMoon,
-  IconSun
-} from "@tabler/icons-react";
+import { IconChevronDown, IconMoon, IconSun } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { LanguagePicker, iconDefaultProps } from "../../../../shared";
