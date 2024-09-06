@@ -4,15 +4,15 @@ import { Box, Button, Card, Grid, Image, Text, Title } from "@mantine/core";
 
 export function Hero() {
   return (
-    <div className="relative w-screen m-0 p-0 h-[700px]">
-      <div className="absolute inset-0">
+    <Box className="relative w-screen m-0 p-0 h-[700px]">
+      <Box className="absolute inset-0">
         <Image
           src={"hero2.png"}
           alt="Hero background"
-          style={{ filter: "blur(2px)" }}
+          style={{ filter: "blur(1px)" }}
           className="w-full h-full object-cover"
         />
-      </div>
+      </Box>
 
       <Box className="relative grid grid-cols-1 md:grid-cols-2 h-full z-10 px-4 md:px-10">
         <Box className="flex flex-col justify-center items-start space-y-4 text-white px-4 md:px-[100px]">
@@ -46,11 +46,11 @@ export function Hero() {
           <Image
             src={"doc.png"}
             alt="Doctor"
-            className="h-auto w-3/4  md:w-auto h-full"
+            className="w-3/4  md:w-auto h-full"
             // style={{ height: "80%" }}
           />
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }

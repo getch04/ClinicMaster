@@ -1,10 +1,10 @@
-import React from "react";
-import { Hero, ServiceSection } from "./components";
+import { Hero, ServiceSection, Story } from "./components";
 
 export default function Home() {
   return (
     <>
       <Hero />;
+      <Story />;
       <ServiceSection />
     </>
   );
