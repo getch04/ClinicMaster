@@ -1,13 +1,12 @@
 "use client";
-import React from "react";
 import {
   Box,
   Card,
+  Container,
+  Group,
+  SimpleGrid,
   Text,
   Title,
-  Group,
-  Container,
-  SimpleGrid,
 } from "@mantine/core";
 import CountUp from "react-countup";
 

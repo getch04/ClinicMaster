@@ -40,11 +40,7 @@
 /* Light mode variables */
 :root[data-mantine-color-scheme="light"] {
   --mantine-font-family: "Gilroy-Medium";
-<<<<<<< HEAD
   --mantine-color-body: #ffffff;
-=======
-  --mantine-color-body: #fff;
->>>>>>> f43c38b741308bfa0b4725eaf84c69152c22f7bc
   --mantine-text-color: #000000;
   --tabs-color: var(--mantine-color-primary-7);
   --border-color: var(--border-color-light);
