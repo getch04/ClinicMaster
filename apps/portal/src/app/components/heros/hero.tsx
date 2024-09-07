@@ -4,25 +4,29 @@ import { Box, Button, Image, Text, Title } from "@mantine/core";
 
 export function Hero() {
   return (
-    <Box className="relative w-screen m-0 p-0 h-[700px]">
+    <Box className="relative w-screen m-0 p-0 h-[710px]">
       <Box className="absolute inset-0">
         <Image
           src={"hero2.png"}
           alt="Hero background"
-          style={{ filter: "blur(1px)" }}
           className="w-full h-full object-cover"
         />
+        {/* <Box className="absolute inset-0 bg-gray-400 opacity-35" /> */}
       </Box>
 
       <Box className="relative grid grid-cols-1 md:grid-cols-2 h-full z-10 px-4 md:px-10">
         <Box className="flex flex-col justify-center items-start space-y-4 text-white px-4 md:px-[100px]">
-          <Title className="text-xl md:text-lg font-bold  text-primary-900">
+          <Title className="text-xl md:text-lg font-bold  text-primary-900 bg-white p-1">
             Dental Perfection
           </Title>
-          <Title className="text-3xl md:text-5xl font-bold leading-tight">
-            Creating Brighter <br /> Smiles Every Day
-          </Title>
-          <Text className="text-gray-600 max-w-lg text-sm md:text-base">
+          <Box className="relative bg-primary-900 bg-opacity-35 p-2">
+            <Box className="absolute inset-0 bg-primary-900 opacity-35 pointer-events-none" />
+            <Title className="relative text-3xl md:text-5xl font-bold leading-tight text-white z-10">
+              Creating Brighter <br /> Smiles Every Day
+            </Title>
+          </Box>
+
+          <Text className="max-w-lg text-sm md:text-base bg-white p-2 text-black ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
@@ -34,10 +38,14 @@ export function Hero() {
               className="rounded-md"
               variant="Filled"
             >
-              Learn More
+              LEARN MORE
             </Button>
-            <Button size="md" className="rounded-md" variant="outline">
-              Contact Us
+            <Button
+              size="md"
+              className="rounded-md font-bold"
+              variant="outline"
+            >
+              CONTACT US
             </Button>
           </Box>
         </Box>
