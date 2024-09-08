@@ -133,7 +133,7 @@ export const ServiceNew: React.FC = () => {
             <Button
               variant="filled"
               size="lg"
-              className="bg-primary-900 text-white hover:bg-primary-800"
+              className="bg-primary-900 text-white font-bold hover:bg-primary-800"
             >
               View All Services
             </Button>

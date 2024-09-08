@@ -5,6 +5,7 @@ import {
   ServiceNew,
   Story,
   Testimonials,
+  WhyChooseUs,
 } from "./components";
 import { AnimatedCounters } from "./components/status-counter";
 
@@ -14,7 +15,9 @@ export default function Home() {
       <Hero />
       <Story />
       <ServiceNew />
+      <WhyChooseUs />
       {/* <ServiceSection /> */}
+
       <AboutUs />
       <ExpertsSection />
       <Testimonials />
