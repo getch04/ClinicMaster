@@ -1,6 +1,7 @@
 import {
   AboutUs,
   ExpertsSection,
+  FreeConsultation,
   Hero,
   ServiceNew,
   Story,
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Story />
       <ServiceNew />
+      <FreeConsultation />
       <WhyChooseUs />
       {/* <ServiceSection /> */}
 

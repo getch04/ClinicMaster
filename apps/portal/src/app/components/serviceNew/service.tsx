@@ -72,7 +72,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
       <Container
         px={0}
         py={0}
-        className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-900 rounded-md"
+        className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-700 rounded-md"
       >
         <Box className="relative">
           <Image src={service.imgUrl} alt={service.title} radius="md" />
@@ -115,7 +115,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 
 export const ServiceNew: React.FC = () => {
   return (
-    <Box className="my-14 py-5">
+    <Box className="my-8 pt-5">
       <Box className="container mx-auto px-4">
         <Text className="text-primary-500 text-sm text-center mb-2">
           OUR SERVICES
