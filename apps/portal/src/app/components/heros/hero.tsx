@@ -26,7 +26,7 @@ const StatItem: React.FC<StatItemProps> = ({ icon: Icon, value, label }) => (
 
 export function Hero() {
   return (
-    <Box className="relative w-screen m-0 p-0 h-[710px] overflow-hidden mt-10">
+    <Box className="relative w-screen m-0 p-0 h-[710px] overflow-hidden">
       <Image
         src="hero2.png"
         alt="Hero background"
