@@ -68,46 +68,48 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   return (
-    <Container
-      px={0}
-      py={0}
-      className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-900 rounded-md"
-    >
-      <Box className="relative">
-        <Image src={service.imgUrl} alt={service.title} radius="md" />
-        <Box className="absolute bottom-2 right-2 bg-primary-900 bg-opacity-80 text-white text-xs p-1 rounded">
-          {service.feature}
-        </Box>
-        <Overlay
-          opacity={0}
-          color="#000"
-          zIndex={1}
-          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity"
-        >
-          <Button
-            variant="filled"
-            className="bg-white text-primary-900 hover:bg-primary-100"
+    <Link href={"/services"}>
+      <Container
+        px={0}
+        py={0}
+        className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-900 rounded-md"
+      >
+        <Box className="relative">
+          <Image src={service.imgUrl} alt={service.title} radius="md" />
+          <Box className="absolute bottom-2 right-2 bg-primary-900 bg-opacity-80 text-white text-xs p-1 rounded">
+            {service.feature}
+          </Box>
+          <Overlay
+            opacity={0}
+            color="#000"
+            zIndex={1}
+            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity"
           >
-            VIEW MORE
-          </Button>
-        </Overlay>
-      </Box>
+            <Button
+              variant="filled"
+              className="bg-white text-primary-900 hover:bg-primary-100"
+            >
+              VIEW MORE
+            </Button>
+          </Overlay>
+        </Box>
 
-      <Title
-        order={3}
-        mt="sm"
-        className="font-bold text-xl text-primary-900 group-hover:text-white group-hover:text-center"
-      >
-        {service.title}
-      </Title>
+        <Title
+          order={3}
+          mt="sm"
+          className="font-bold text-xl text-primary-900 group-hover:text-white group-hover:text-center"
+        >
+          {service.title}
+        </Title>
 
-      <Text
-        size="sm"
-        className="text-slate-500 group-hover:text-white group-hover:pb-1 group-hover:text-center group-hover:px-1"
-      >
-        {service.description}
-      </Text>
-    </Container>
+        <Text
+          size="sm"
+          className="text-slate-500 group-hover:text-white group-hover:pb-1 group-hover:text-center group-hover:px-1"
+        >
+          {service.description}
+        </Text>
+      </Container>
+    </Link>
   );
 };
 
