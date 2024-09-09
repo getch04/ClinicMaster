@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import { iconDefaultProps } from "../../../../shared";
 import { footerData } from "./footer-menu";
+import Link from "next/link";
 
 export function FooterSection() {
   const groups = footerData.map((group) => (
@@ -40,21 +41,24 @@ export function FooterSection() {
   ));
 
   return (
-    <footer className="px-4 md:px-12 py-8">
-      <Box className="flex flex-row justify-between items-center px-40">
-        <Box className="flex flex-row justify-start  items-center pb-10">
-          <Image
-            src="/logo.png"
-            alt="Dr Helina Dental Clinic"
-            width={100}
-            height={100}
-            className="rounded-3xl"
-          />
-          <Title className="p-2 text-white text-sm font-bold">
-            Dr. Helina <br /> Dental Clinic
-          </Title>
-        </Box>
-        <Box className="flex flex-row justify-end  items-center">
+    <footer className="px-4 md:px-12 py-16">
+      <SimpleGrid cols={6} spacing="sm">
+        <Box className="flex flex-col justify-center items-center px-1">
+          <Link href={"/"}>
+            <Box className="flex flex-row justify-start  items-center pb-2 cursor-pointer">
+              <Image
+                src="/logo.png"
+                alt="Dr Helina Dental Clinic"
+                width={100}
+                height={100}
+                className="rounded-3xl"
+              />
+              <Title className="p-2 text-white text-sm font-bold">
+                Dr. Helina <br /> Dental Clinic
+              </Title>
+            </Box>
+          </Link>
+
           <Box className="flex flex-row justify-end  items-center">
             <Input
               placeholder="Send us an email"
@@ -68,9 +72,7 @@ export function FooterSection() {
             />
           </Box>
         </Box>
-      </Box>
-      <SimpleGrid cols={5} spacing="lg">
-        {groups}
+        {...groups}
       </SimpleGrid>
 
       <Divider className="my-8" />
