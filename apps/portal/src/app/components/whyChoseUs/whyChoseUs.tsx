@@ -1,13 +1,5 @@
 "use client";
-import {
-  Box,
-  Container,
-  Grid,
-  Paper,
-  Text,
-  ThemeIcon,
-  Title,
-} from "@mantine/core";
+import { Box, Grid, Paper, Text, Title } from "@mantine/core";
 import {
   IconFirstAidKit,
   IconHeartbeat,
@@ -17,7 +9,7 @@ import {
 import React from "react";
 
 interface Feature {
-  icon: React.FC<any>; // Use 'any' type to avoid strict typing errors
+  icon: React.FC<any>;
   title: string;
   description: string;
 }
@@ -80,7 +72,7 @@ export function WhyChooseUs(): React.ReactElement {
       <Grid gutter={40}>
         {features.map((feature, index) => (
           <Grid.Col key={index} span={{ base: 12, md: 6, lg: 4 }}>
-            <Paper radius="md" p="lg" className="h-full">
+            <Box p="lg" className="h-full">
               <Box
                 size="md"
                 className="mb-2 bg-primary-300 flex w-8 h-8 items-center justify-center text-white rounded-md"
@@ -97,7 +89,7 @@ export function WhyChooseUs(): React.ReactElement {
               <Text size="sm" c="dimmed">
                 {feature.description}
               </Text>
-            </Paper>
+            </Box>
           </Grid.Col>
         ))}
       </Grid>

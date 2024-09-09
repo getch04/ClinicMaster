@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -8,7 +10,8 @@ import {
   Title,
 } from "@mantine/core";
 import Link from "next/link";
-import React from "react";
+import { motion, useAnimation, useInView } from "framer-motion"; // Import framer-motion
+import React, { useEffect, useRef } from "react";
 
 interface Service {
   title: string;
@@ -67,49 +70,70 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+  const controls = useAnimation(); // Animation controls
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true }); // Detect if in view
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
   return (
-    <Link href={"/services"}>
-      <Container
-        px={0}
-        py={0}
-        className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-700 rounded-md"
-      >
-        <Box className="relative">
-          <Image src={service.imgUrl} alt={service.title} radius="md" />
-          <Box className="absolute bottom-2 right-2 bg-primary-900 bg-opacity-80 text-white text-xs p-1 rounded">
-            {service.feature}
-          </Box>
-          <Overlay
-            opacity={0}
-            color="#000"
-            zIndex={1}
-            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity"
-          >
-            <Button
-              variant="filled"
-              className="bg-white text-primary-900 hover:bg-primary-100"
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+    >
+      <Link href={"/services"}>
+        <Container
+          px={0}
+          py={0}
+          className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-700 rounded-md"
+        >
+          <Box className="relative">
+            <Image src={service.imgUrl} alt={service.title} radius="md" />
+            <Box className="absolute bottom-2 right-2 bg-primary-900 bg-opacity-80 text-white text-xs p-1 rounded">
+              {service.feature}
+            </Box>
+            <Overlay
+              opacity={0}
+              color="#000"
+              zIndex={1}
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity"
             >
-              VIEW MORE
-            </Button>
-          </Overlay>
-        </Box>
+              <Button
+                variant="filled"
+                className="bg-white text-primary-900 hover:bg-primary-100"
+              >
+                VIEW MORE
+              </Button>
+            </Overlay>
+          </Box>
 
-        <Title
-          order={3}
-          mt="sm"
-          className="font-bold text-xl text-primary-900 group-hover:text-white group-hover:text-center"
-        >
-          {service.title}
-        </Title>
+          <Title
+            order={3}
+            mt="sm"
+            className="font-bold text-xl text-primary-900 group-hover:text-white group-hover:text-center"
+          >
+            {service.title}
+          </Title>
 
-        <Text
-          size="sm"
-          className="text-slate-500 group-hover:text-white group-hover:pb-1 group-hover:text-center group-hover:px-1"
-        >
-          {service.description}
-        </Text>
-      </Container>
-    </Link>
+          <Text
+            size="sm"
+            className="text-slate-500 group-hover:text-white group-hover:pb-1 group-hover:text-center group-hover:px-1"
+          >
+            {service.description}
+          </Text>
+        </Container>
+      </Link>
+    </motion.div>
   );
 };
 

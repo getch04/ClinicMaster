@@ -10,7 +10,7 @@ export function AboutUs() {
          border-[var(--mantine-color-primary-7)] transform rotate-6"
         >
           <Image
-            src="/hero1.jpg"
+            src="/hero.jpg"
             alt="Dental Clinic Team"
             className="object-cover h-full w-full -rotate-6"
             radius="md"

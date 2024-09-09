@@ -8,7 +8,6 @@ import {
   Testimonials,
   WhyChooseUs,
 } from "./components";
-import { AnimatedCounters } from "./components/status-counter";
 
 export default function Home() {
   return (
@@ -18,12 +17,8 @@ export default function Home() {
       <ServiceNew />
       <FreeConsultation />
       <WhyChooseUs />
-      {/* <ServiceSection /> */}
-
-      <AboutUs />
       <ExpertsSection />
       <Testimonials />
-      <AnimatedCounters />
     </>
   );
 }
