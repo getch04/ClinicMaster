@@ -3,14 +3,7 @@ import FooterSection from "./footer-section";
 
 const Footer = () => {
   return (
-    <AppShell.Footer
-      style={{
-        backgroundColor: "var(--mantine-color-primary-0)",
-        color: "var(--mantine-text-color)",
-        position: "relative",
-        marginTop: "1rem",
-      }}
-    >
+    <AppShell.Footer className="bg-gradient-to-r from-primary-900 to-primary-600 text-white relative mt-4">
       <FooterSection />
     </AppShell.Footer>
   );
