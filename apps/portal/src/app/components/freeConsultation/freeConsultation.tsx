@@ -14,7 +14,7 @@ import {
 export function FreeConsultation() {
   return (
     <Box className="bg-primary-700">
-      <Grid gutter={0} className="h-[450px]">
+      <Grid gutter={0} className="md:h-[450px] h-auto">
         <Grid.Col span={{ base: 12, md: 6 }} className="flex items-center">
           <Container size="md" className="text-white px-24">
             <Title order={2} className="text-4xl font-bold mb-4">

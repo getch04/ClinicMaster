@@ -123,6 +123,18 @@
   background-color: var(--mantine-color-primary-7) !important;
 }
 
+/* Custom carousel indicator styles */
+.mantine-Carousel-indicator {
+  background-color: var(--mantine-color-primary-7) !important;
+  width: 16px;
+  height: 4px;
+}
+
+.mantine-Carousel-indicator[data-active] {
+  background-color: var(--mantine-color-primary-9) !important;
+}
+
+
 .slick-dots li button::before {
   font-size: 12px !important;
 }

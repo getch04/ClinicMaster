@@ -55,7 +55,10 @@ const features: Feature[] = [
 
 export function WhyChooseUs(): React.ReactElement {
   return (
-    <Box size="lg" className="py-10 px-40 bg-slate-100">
+    <Box
+      size="lg"
+      className="py-10 px-12 md:px-40 flex flex-col justify-center items-center bg-slate-100"
+    >
       <Text
         color="dimmed"
         className="text-center mb-1 text-primary-500 text-sm"
@@ -69,7 +72,7 @@ export function WhyChooseUs(): React.ReactElement {
         What Makes Us Different
       </Title>
 
-      <Grid gutter={40}>
+      <Grid>
         {features.map((feature, index) => (
           <Grid.Col key={index} span={{ base: 12, md: 6, lg: 4 }}>
             <Box p="lg" className="h-full">
