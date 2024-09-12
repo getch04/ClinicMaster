@@ -1,5 +1,7 @@
+import { Contact } from "lucide-react";
 import {
   AboutUs,
+  ContactSection,
   ExpertsSection,
   FreeConsultation,
   Hero,
@@ -19,6 +21,7 @@ export default function Home() {
       <ExpertsSection />
       <WhyChooseUs />
       <Testimonials />
+      <ContactSection />
     </>
   );
 }
