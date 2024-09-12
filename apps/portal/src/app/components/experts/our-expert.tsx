@@ -1,157 +1,164 @@
 "use client";
+import { Carousel } from "@mantine/carousel";
 import {
   Box,
+  Button,
   Card,
+  Container,
+  Group,
   Image,
   Text,
   Title,
-  Group,
-  Container,
-  SimpleGrid,
 } from "@mantine/core";
 import {
-  IconBrandFacebook,
-  IconBrandTwitter,
-  IconBrandLinkedin,
-  IconBrandInstagram,
-} from "@tabler/icons-react";
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Clock,
+  Star,
+  Stethoscope,
+} from "lucide-react";
+
+interface Doctor {
+  name: string;
+  job: string;
+  image: string;
+  specialization: string;
+  experience: string;
+  rating: number;
+}
+
+const doctors: Doctor[] = [
+  {
+    name: "Dr. Hilina Abebe",
+    job: "Orthodontist",
+    image: "services/cosmeticdentistry.png",
+    specialization: "Braces & Invisalign",
+    experience: "15+ years",
+    rating: 4.9,
+  },
+  {
+    name: "Dr. Yohannes Tadesse",
+    job: "Endodontist",
+    image: "doc1.png",
+    specialization: "Root Canal Therapy",
+    experience: "12+ years",
+    rating: 4.8,
+  },
+  {
+    name: "Dr. Tigist Bekele",
+    job: "Pediatric Dentist",
+    image: "docs.jpg",
+    specialization: "Children's Dental Care",
+    experience: "10+ years",
+    rating: 4.9,
+  },
+];
 
 export function ExpertsSection() {
-  const doctors = [
-    {
-      name: "Dr. Hilina",
-      job: "Orthodontist",
-      image: "/hero.png", // Replace with actual image paths
-      social: {
-        facebook: "https://facebook.com/drjohndoe",
-        twitter: "https://twitter.com/drjohndoe",
-        linkedin: "https://linkedin.com/in/drjohndoe",
-        instagram: "https://instagram.com/drjohndoe",
-      },
-    },
-    {
-      name: "Dr. Jane Smith",
-      job: "Endodontist",
-      image: "/hero1.jpg", // Replace with actual image paths
-      social: {
-        facebook: "https://facebook.com/drjanesmith",
-        twitter: "https://twitter.com/drjanesmith",
-        linkedin: "https://linkedin.com/in/drjanesmith",
-        instagram: "https://instagram.com/drjanesmith",
-      },
-    },
-    {
-      name: "Dr. Emily Johnson",
-      job: "Pediatric Dentist",
-      image: "/hero1.jpg", // Replace with actual image paths
-      social: {
-        facebook: "https://facebook.com/dremilyjohnson",
-        twitter: "https://twitter.com/dremilyjohnson",
-        linkedin: "https://linkedin.com/in/dremilyjohnson",
-        instagram: "https://instagram.com/dremilyjohnson",
-      },
-    },
-  ];
-
   return (
-    <Box className="my-12 px-4 md:px-12  bg-gray-50">
-      <Container>
-        {/* Section Heading */}
-        <Box style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <Title className="text-3xl font-extrabold text-gray-800">
-            Our Doctors
+    <Box className="m-20  py-2">
+      <Container size="xl">
+        <Box className="text-center pb-1">
+          <Title
+            order={2}
+            className="text-primary-500 text-sm text-center mb-2"
+          >
+            Our Expert Dentists
           </Title>
-          <Text size="xl" className="text-primary-700 mt-2 font-semibold">
-            Best Expert Dentists
+          <Text
+            size="xl"
+            className=" text-xl text-gray-500 text-center font-bold mb-10 "
+          >
+            Meet our team of experienced professionals dedicated to providing
+            you with the highest quality dental care.
           </Text>
         </Box>
 
-        {/* Doctors Grid */}
-        <SimpleGrid cols={3} spacing="lg" className="my-2">
+        <Carousel
+          slideSize="30%"
+          slideGap="md"
+          align="start"
+          slidesToScroll={1}
+          withControls
+          loop
+          classNames={{
+            control: "bg-primary-600 text-white hover:bg-primary-700 ",
+          }}
+          nextControlIcon={
+            <ChevronRightIcon
+              className="mantine-Carousel-control p-1 rounded-full text-white"
+              size={30}
+            />
+          }
+          previousControlIcon={
+            <ChevronLeftIcon
+              className="mantine-Carousel-control p-1 rounded-full text-white"
+              size={30}
+            />
+          }
+        >
           {doctors.map((doctor, index) => (
-            <Card
-              key={index}
-              shadow="sm"
-              padding="lg"
-              radius="md"
-              className="hover:shadow-lg transition-shadow duration-300"
-            >
-              <Card.Section className="relative">
-                <Image
-                  src={doctor.image}
-                  alt={doctor.name}
-                  radius={"xl"}
-                  height={240}
-                  fit="cover"
-                  className="rounded-full border-4 border-primary-600 object-cover
-                   hover:bg-primary-500 hover:opacity-90 transition-transform duration-300
-                    ease-in-out transform hover:scale-105"
-                />
-              </Card.Section>
+            <Carousel.Slide key={doctor.name} className="p-4">
+              <Card
+                shadow="md"
+                radius="lg"
+                className="h-full  transition-all duration-300 ease-in-out transform hover:-translate-y-2 bg-white"
+              >
+                <Card.Section>
+                  <Box className="w-full h-72">
+                    <Image
+                      src={doctor.image}
+                      alt={doctor.name}
+                      fit="cover"
+                      className="object-cover w-full h-full"
+                    />
+                  </Box>
+                </Card.Section>
 
-              <Box mt="md" style={{ textAlign: "center" }}>
-                <Text fw={500} size="lg">
-                  {doctor.name}
-                </Text>
-                <Text size="sm" color="dimmed">
-                  {doctor.job}
-                </Text>
+                <Box className="p-6">
+                  <Text className="text-2xl font-bold text-gray-800 mb-1">
+                    {doctor.name}
+                  </Text>
+                  <Text className="text-lg text-primary-600 font-medium mb-4">
+                    {doctor.job}
+                  </Text>
 
-                {/* Social Media Icons */}
-                <Group justify="center" gap="xs" mt="md">
-                  {doctor.social.facebook && (
-                    <a
-                      href={doctor.social.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconBrandFacebook
-                        size={24}
-                        className="text-primary-600 hover:text-primary-800 transition-colors duration-300"
-                      />
-                    </a>
-                  )}
-                  {doctor.social.twitter && (
-                    <a
-                      href={doctor.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconBrandTwitter
-                        size={24}
-                        className="text-primary-400 hover:text-primary-600 transition-colors duration-300"
-                      />
-                    </a>
-                  )}
-                  {doctor.social.linkedin && (
-                    <a
-                      href={doctor.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconBrandLinkedin
-                        size={24}
-                        className="text-primary-700 hover:text-primary-900 transition-colors duration-300"
-                      />
-                    </a>
-                  )}
-                  {doctor.social.instagram && (
-                    <a
-                      href={doctor.social.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <IconBrandInstagram
-                        size={24}
-                        className="text-pink-500 hover:text-pink-700 transition-colors duration-300"
-                      />
-                    </a>
-                  )}
-                </Group>
-              </Box>
-            </Card>
+                  <Group gap="md" mb="md">
+                    <Group gap="xs">
+                      <Stethoscope size={18} className="text-primary-500" />
+                      <Text size="sm" className="text-gray-600">
+                        {doctor.specialization}
+                      </Text>
+                    </Group>
+                    <Group gap="xs">
+                      <Clock size={18} className="text-primary-500" />
+                      <Text size="sm" className="text-gray-600">
+                        {doctor.experience}
+                      </Text>
+                    </Group>
+                  </Group>
+
+                  <Group gap="xs" mb="md">
+                    <Star size={18} className="text-yellow-400" />
+                    <Text size="sm" className="text-gray-600 font-medium">
+                      {doctor.rating} / 5
+                    </Text>
+                  </Group>
+
+                  <Button
+                    fullWidth
+                    variant="filled"
+                    color="blue"
+                    size="md"
+                    className="mt-4 rounded-full bg-primary-600 hover:bg-primary-700 transition-colors duration-300"
+                  >
+                    Book Appointment
+                  </Button>
+                </Box>
+              </Card>
+            </Carousel.Slide>
           ))}
-        </SimpleGrid>
+        </Carousel>
       </Container>
     </Box>
   );

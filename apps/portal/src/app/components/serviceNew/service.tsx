@@ -40,13 +40,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <Container
           px={0}
           py={0}
-          className="group cursor-pointer relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          className="group cursor-pointer relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl "
         >
           <Box className="relative">
             <Image
               src={service.imgUrl}
               alt={service.title}
-              className="w-full h-auto object-cover group-hover:scale-105"
+              className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300 "
             />
             <Box className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90" />
             <Box className="absolute bottom-0 left-0 right-0 p-4 text-white">

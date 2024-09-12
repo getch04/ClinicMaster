@@ -16,8 +16,8 @@ export default function Home() {
       <Story />
       <ServiceNew />
       <FreeConsultation />
-      <WhyChooseUs />
       <ExpertsSection />
+      <WhyChooseUs />
       <Testimonials />
     </>
   );
