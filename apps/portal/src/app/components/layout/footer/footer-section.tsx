@@ -2,6 +2,7 @@
 import {
   ActionIcon,
   Box,
+  Container,
   Divider,
   Group,
   Input,
@@ -34,7 +35,7 @@ export function FooterSection() {
           style={{ textDecoration: "none" }}
         >
           {link.label}
-          <span className="absolute left-0 bottom-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-20"></span>
+          <Container className="absolute left-0 bottom-0 h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-20"></Container>
         </Text>
       ))}
     </Box>

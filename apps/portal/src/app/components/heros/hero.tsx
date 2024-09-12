@@ -127,16 +127,19 @@ export function Hero() {
               <Group>
                 <Button
                   size="lg"
-                  className="bg-primary-500 hover:bg-primary-600 text-white font-bold transition-colors"
+                  className="group bg-primary-900 rounded-full hover:bg-white transition-colors"
                 >
-                  BOOK APPOINTMENT
+                  <Text className="px-5 text-white group-hover:text-primary-900 font-bold">
+                    Book Online
+                  </Text>
                 </Button>
                 <Button
                   size="lg"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-900 font-bold transition-colors"
-                  variant="outline"
+                  className=" group rounded-full bg-primary-900 border-2 hover:bg-white hover:text-primary-900 transition-colors"
                 >
-                  OUR SERVICES
+                  <Text className="px-5 text-white group-hover:text-primary-900 font-bold">
+                    Call (251) 934-094-123
+                  </Text>
                 </Button>
               </Group>
             </motion.div>

@@ -1,78 +1,23 @@
 "use client";
-
-import {
-  Box,
-  Button,
-  Container,
-  Image,
-  Overlay,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Box, Button, Container, Image, Text } from "@mantine/core";
+import { motion, useAnimation, useInView } from "framer-motion";
 import Link from "next/link";
-import { motion, useAnimation, useInView } from "framer-motion"; // Import framer-motion
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Service {
   title: string;
-  description: string;
   imgUrl: string;
   feature: string;
 }
-
-const services: Service[] = [
-  {
-    title: "Orthodontics",
-    description:
-      "Align your teeth and correct bite issues with our advanced orthodontic treatments, including traditional braces and clear aligners.",
-    imgUrl: "services/orthodontics.png",
-    feature: "Teeth Alignment",
-  },
-  {
-    title: "Cosmetic Dentistry",
-    description:
-      "Enhance your smile with veneers, bonding, and other cosmetic dental treatments to create the smile you've always dreamed of.",
-    imgUrl: "services/cosmeticdentistry.png",
-    feature: "Smile Makeover",
-  },
-  {
-    title: "Dental Implants",
-    description:
-      "Replace missing teeth with durable and natural-looking dental implants for a confident smile and improved functionality.",
-    imgUrl: "services/dentalimplant.png",
-    feature: "Tooth Replacement",
-  },
-  {
-    title: "Dental Cleanings",
-    description:
-      "Keep your teeth healthy and plaque-free with regular dental cleanings, designed to remove tartar and prevent gum disease.",
-    imgUrl: "services/dentalcleaning.png",
-    feature: "Plaque Removal",
-  },
-  {
-    title: "Emergency Dental Care",
-    description:
-      "Get fast relief for dental emergencies, such as toothaches, broken teeth, or other urgent dental issues.",
-    imgUrl: "services/emergencycare.png",
-    feature: "Urgent Care",
-  },
-  {
-    title: "Root Canal Therapy",
-    description:
-      "Save your natural tooth and relieve pain from infection with our gentle root canal treatments.",
-    imgUrl: "services/rootcanal.png",
-    feature: "Pain Relief",
-  },
-];
 
 interface ServiceCardProps {
   service: Service;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
-  const controls = useAnimation(); // Animation controls
+  const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true }); // Detect if in view
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -95,42 +40,24 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <Container
           px={0}
           py={0}
-          className="group cursor-pointer relative p-4 m-4 hover:scale-105 transition-all duration-300 hover:bg-primary-700 rounded-md"
+          className="group cursor-pointer relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <Box className="relative">
-            <Image src={service.imgUrl} alt={service.title} radius="md" />
-            <Box className="absolute bottom-2 right-2 bg-primary-900 bg-opacity-80 text-white text-xs p-1 rounded">
-              {service.feature}
+            <Image
+              src={service.imgUrl}
+              alt={service.title}
+              className="w-full h-auto object-cover group-hover:scale-105"
+            />
+            <Box className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90" />
+            <Box className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <Text className="text-3xl font-extrabold mb-1">
+                {service.title}
+              </Text>
+              <Text className="text-sm inline-block  py-1 rounded">
+                {service.feature}
+              </Text>
             </Box>
-            <Overlay
-              opacity={0}
-              color="#000"
-              zIndex={1}
-              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity"
-            >
-              <Button
-                variant="filled"
-                className="bg-white text-primary-900 hover:bg-primary-100"
-              >
-                VIEW MORE
-              </Button>
-            </Overlay>
           </Box>
-
-          <Title
-            order={3}
-            mt="sm"
-            className="font-bold text-xl text-primary-900 group-hover:text-white group-hover:text-center"
-          >
-            {service.title}
-          </Title>
-
-          <Text
-            size="sm"
-            className="text-slate-500 group-hover:text-white group-hover:pb-1 group-hover:text-center group-hover:px-1"
-          >
-            {service.description}
-          </Text>
         </Container>
       </Link>
     </motion.div>
@@ -138,6 +65,40 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 };
 
 export const ServiceNew: React.FC = () => {
+  const services: Service[] = [
+    {
+      title: "Orthodontics",
+      imgUrl: "services/orthodontics.png",
+      feature: "Teeth Alignment, braces, retainers, clear aligners",
+    },
+    {
+      title: "Cosmetic Dentistry",
+      imgUrl: "services/cosmeticdentistry.png",
+      feature: "Veneers, bonding, smile makeovers, teeth whitening",
+    },
+    {
+      title: "Dental Implants",
+      imgUrl: "services/dentalimplant.png",
+      feature: "Tooth Replacement, crown, bridge, implant surgery",
+    },
+    {
+      title: "Dental Cleanings",
+      imgUrl: "services/dentalcleaning.png",
+      feature: "Plaque Removal, tartar control, polishing, gum health",
+    },
+    {
+      title: "Emergency Dental Care",
+      imgUrl: "services/emergencycare.png",
+      feature:
+        "Urgent Care, toothache relief, broken tooth repair, infection treatment",
+    },
+    {
+      title: "Root Canal Therapy",
+      imgUrl: "services/rootcanal.png",
+      feature: "Pain Relief, infected pulp treatment, saving damaged teeth",
+    },
+  ];
+
   return (
     <Box className="my-8 pt-5">
       <Box className="container mx-auto px-4">
@@ -157,9 +118,9 @@ export const ServiceNew: React.FC = () => {
             <Button
               variant="filled"
               size="lg"
-              className="bg-primary-900 text-white font-bold hover:bg-primary-800"
+              className="bg-primary-900 rounded-full text-white font-bold hover:bg-primary-800"
             >
-              View All Services
+              <Text className="px-10">Learn More</Text>
             </Button>
           </Link>
         </Box>
