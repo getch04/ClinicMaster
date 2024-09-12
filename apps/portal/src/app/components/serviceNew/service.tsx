@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 interface Service {
+  id: number;
   title: string;
   imgUrl: string;
   feature: string;
@@ -36,7 +37,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
       }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
-      <Link href={"/services"}>
+      <Link href={`/services/${service.id}`}>
         <Container
           px={0}
           py={0}
@@ -67,32 +68,38 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 export const ServiceNew: React.FC = () => {
   const services: Service[] = [
     {
+      id: 1,
       title: "Orthodontics",
       imgUrl: "services/orthodontics.png",
       feature: "Teeth Alignment, braces, retainers, clear aligners",
     },
     {
+      id: 2,
       title: "Cosmetic Dentistry",
       imgUrl: "services/cosmeticdentistry.png",
       feature: "Veneers, bonding, smile makeovers, teeth whitening",
     },
     {
+      id: 3,
       title: "Dental Implants",
       imgUrl: "services/dentalimplant.png",
       feature: "Tooth Replacement, crown, bridge, implant surgery",
     },
     {
+      id: 4,
       title: "Dental Cleanings",
       imgUrl: "services/dentalcleaning.png",
       feature: "Plaque Removal, tartar control, polishing, gum health",
     },
     {
+      id: 5,
       title: "Emergency Dental Care",
       imgUrl: "services/emergencycare.png",
       feature:
         "Urgent Care, toothache relief, broken tooth repair, infection treatment",
     },
     {
+      id: 6,
       title: "Root Canal Therapy",
       imgUrl: "services/rootcanal.png",
       feature: "Pain Relief, infected pulp treatment, saving damaged teeth",
