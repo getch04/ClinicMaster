@@ -9,44 +9,47 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@repo/core": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/theme": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
+    "add": "^2.0.6",
+    "lucide-react": "^0.439.0",
     "next": "14.2.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/theme": "workspace:*",
-    "@repo/core": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "react-simple-typewriter": "^5.0.1"
   },
   "devDependencies": {
+    "@repo/core": "workspace:*",
     "@repo/eslint-config": "workspace:*",
+    "@repo/theme": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
-    "typescript": "^5",
-    "@repo/theme": "workspace:*",
-    "@repo/core": "workspace:*",
-    "@repo/ui": "workspace:*",
     "postcss": "^8",
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
     "sass": "^1.69.4",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   },
   "peerDependencies": {
+    "@repo/core": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
-    "@repo/core": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*"
   },
   "optionalDependencies": {
+    "@repo/core": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",
-    "@repo/core": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*"
   }

@@ -1,11 +1,27 @@
-import React from "react";
-import { Hero, ServiceSection } from "./components";
+import { Contact } from "lucide-react";
+import {
+  AboutUs,
+  ContactSection,
+  ExpertsSection,
+  FreeConsultation,
+  Hero,
+  ServiceNew,
+  Story,
+  Testimonials,
+  WhyChooseUs,
+} from "./components";
 
 export default function Home() {
   return (
     <>
-      <Hero />;
-      <ServiceSection />
+      <Hero />
+      <Story />
+      <ServiceNew />
+      <FreeConsultation />
+      <ExpertsSection />
+      <WhyChooseUs />
+      <Testimonials />
+      <ContactSection />
     </>
   );
 }
