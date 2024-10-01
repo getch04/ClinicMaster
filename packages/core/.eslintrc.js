@@ -7,4 +7,9 @@ module.exports = {
     project: "./tsconfig.lint.json",
     tsconfigRootDir: __dirname,
   },
+
+  env: {
+    SUPABASE_PROJECT_URL: true,
+    SUPABASE_API_KEY: true
+  }
 };
