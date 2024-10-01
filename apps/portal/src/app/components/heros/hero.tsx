@@ -2,38 +2,8 @@
 
 import { Box, Image, Overlay, Text, Title } from "@mantine/core";
 import { motion, useAnimation } from "framer-motion";
-import {
-  ChevronDown,
-  LucideIcon,
-  Smile
-} from "lucide-react";
+import { ChevronDown, Smile } from "lucide-react";
 import { useEffect, useState } from "react";
-import CountUp from "react-countup";
-
-interface StatItemProps {
-  icon: LucideIcon;
-  value: number;
-  label: string;
-}
-
-const StatItem: React.FC<StatItemProps> = ({ icon: Icon, value, label }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-lg"
-  >
-    <Icon size={36} className="text-primary-300 mb-2" />
-    <CountUp
-      end={value}
-      duration={3}
-      className="text-4xl font-bold text-white"
-    />
-    <Text className="text-sm font-medium text-primary-100 text-center mt-1">
-      {label}
-    </Text>
-  </motion.div>
-);
 
 const ScrollArrow = () => {
   const arrowAnimation = {
@@ -70,17 +40,19 @@ const ScrollArrow = () => {
 
 export function Hero() {
   const controls = useAnimation();
-
+  const [scrollY, setScrollY] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [heroContent, setHeroContent] = useState<{
     type: "image" | "video";
     src: string;
+    title: string;
+    subtitle: string;
   }>({
-    type: "video",
+    type: "image",
     src: "",
+    title: "",
+    subtitle: "",
   });
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 });
@@ -100,18 +72,25 @@ export function Hero() {
   }, [controls]);
 
   useEffect(() => {
-    const fetchHeroContent = async () => {
-      const response = await fetch("http://localhost:3003/heroSection");
-      const data = await response.json();
-      setHeroContent(data);
-      setIsLoading(false);
-    };
-
-    fetchHeroContent();
+    fetch("http://localhost:5001/heroSections/2")
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoading(false);
+        setHeroContent({
+          type: data.type,
+          src: data.src,
+          title: data.title,
+          subtitle: data.subtitle,
+        });
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        return console.error("Error fetching hero section data:", error);
+      });
   }, []);
 
   return (
-    <Box className="relative h-[710px] m-0 p-0 w-screen overflow-hidden bg-gradient-to-br from-primary-900 to-primary-700">
+    <Box className="relative h-[900px] m-0 p-0 w-screen overflow-hidden bg-gradient-to-br from-primary-900 to-primary-700 bg-primary-500">
       <motion.div
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -161,21 +140,11 @@ export function Hero() {
           >
             <Smile size={80} className="mx-auto text-primary-300" />
           </motion.div>
-          <Title className="mb-4 text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
-            Smile with
-            <span className="relative">
-              <span className="relative z-10 px-2">Confidence</span>
-              <motion.span
-                className="absolute bottom-0 left-0 h-3 w-full bg-primary-500"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                style={{ originX: 0 }}
-              />
-            </span>
+          <Title className="mb-4 text-4xl font-extrabold leading-tight md:text-6xl lg:text-7xl">
+            {heroContent.title}
           </Title>
-          <Text className="mb-8 text-xl text-primary-200 md:text-2xl">
-            Experience modern dentistry with a personal touch
+          <Text className="mb-8 text-xl text-primary-200 font-bold md:text-2xl">
+            {heroContent.subtitle}
           </Text>
 
           {/* Interactive buttons */}
@@ -185,13 +154,13 @@ export function Hero() {
               whileTap={{ scale: 0.95 }}
               className="group relative overflow-hidden rounded-full bg-white px-8 py-3 text-lg font-semibold text-primary-900 transition-all duration-300 hover:shadow-lg"
             >
-              <span className="relative z-10">Book Appointment</span>
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-700"
+                className="absolute inset-0  bg-gradient-to-r from-primary-500 to-primary-700"
                 initial={{ x: "100%" }}
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
+              <span className="relative z-10">Book Appointment</span>
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
