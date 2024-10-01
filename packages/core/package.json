@@ -10,7 +10,6 @@
     "test": "echo 'Add test script here'",
     "lint": "echo 'Add lint script here'"
   },
-  "exports": {},
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/theme": "workspace:*",

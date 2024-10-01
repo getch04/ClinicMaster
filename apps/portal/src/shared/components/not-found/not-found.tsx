@@ -1,6 +1,6 @@
-import { Container, Title, Text, Button, Group } from "@mantine/core";
-import React from "react";
+import { Button, Container, Group, Text, Title } from "@mantine/core";
 import Link from "next/link";
+import React from "react";
 import { Illustration } from "./illustration";
 import classes from "./not-found.module.css";
 

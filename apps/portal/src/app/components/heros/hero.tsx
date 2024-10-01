@@ -1,14 +1,11 @@
 "use client";
 
-import { Box, Button, Group, Image, Overlay, Text, Title } from "@mantine/core";
+import { Box, Image, Overlay, Text, Title } from "@mantine/core";
 import { motion, useAnimation } from "framer-motion";
 import {
-  Award,
-  Calendar,
   ChevronDown,
   LucideIcon,
-  Users,
-  Smile,
+  Smile
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
@@ -81,8 +78,8 @@ export function Hero() {
     type: "video",
     src: "",
   });
-  const [isLoading, setIsLoading] = useState(true);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
