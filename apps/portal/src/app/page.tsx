@@ -1,6 +1,8 @@
-import { Contact } from "lucide-react";
+"use client";
+
+
+import { Provider } from "react-redux";
 import {
-  AboutUs,
   ContactSection,
   ExpertsSection,
   FreeConsultation,
@@ -8,20 +10,23 @@ import {
   ServiceNew,
   Story,
   Testimonials,
-  WhyChooseUs,
+  WhyChooseUs
 } from "./components";
+import { store } from "./store";
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Story />
-      <ServiceNew />
-      <FreeConsultation />
-      <ExpertsSection />
-      <WhyChooseUs />
-      <Testimonials />
-      <ContactSection />
+      <Provider store={store}>
+        <Hero />
+        <Story />
+        <ServiceNew />
+        <FreeConsultation />
+        <ExpertsSection />
+        <WhyChooseUs />
+        <Testimonials />
+        <ContactSection />
+      </Provider>
     </>
   );
 }
