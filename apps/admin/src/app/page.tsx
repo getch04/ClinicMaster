@@ -4,7 +4,6 @@ import {
   Box,
   Collapse,
   Group,
-  rem,
   Text,
   UnstyledButton,
 } from "@mantine/core";
@@ -21,11 +20,12 @@ import {
   IconMenu2,
   IconPhoto,
   IconSettings,
-  IconStethoscope,
   IconUpload,
 } from "@tabler/icons-react";
 import { useState } from "react";
+import { Dashboard } from "./components";
 
+// Menu Items
 const menuItems = [
   { icon: IconDashboard, label: "Dashboard", link: "/" },
   {
@@ -34,6 +34,7 @@ const menuItems = [
     subItems: [
       { label: "General", link: "/settings/general" },
       { label: "Security", link: "/settings/security" },
+      { label: "Website Configurations", link: "/settings/website-configurations" },
     ],
   },
   { icon: IconMail, label: "Email Configuration", link: "/email" },
@@ -57,21 +58,42 @@ const menuItems = [
   { icon: IconBrandFacebook, label: "Social Media", link: "/social" },
 ];
 
+// MainLink Component (updated)
 const MainLink = ({
   icon: Icon,
   label,
-  link,
-  subItems,
+  link = "",
+  subItems = [],
   onClick,
   isActive,
+  isSubMenuActive,
   isOpen,
+  setOpenMenus,
+  setActiveSubMenu,
+}: {
+  icon: any;
+  label: any;
+  link?: any;
+  subItems?: any[];
+  onClick: any;
+  isActive: any;
+  isSubMenuActive: any;
+  isOpen: any;
+  setOpenMenus: any;
+  setActiveSubMenu: any;
 }) => {
   const hasSubItems = subItems && subItems.length > 0;
 
   return (
     <>
       <UnstyledButton
-        onClick={() => onClick(link)}
+        onClick={() => {
+          if (hasSubItems) {
+            setOpenMenus((prev) => ({ ...prev, [label]: !isOpen }));
+          } else {
+            onClick(link);
+          }
+        }}
         className={`w-full p-3 rounded-sm transition-colors duration-200 ${
           isActive
             ? "bg-primary-600 text-white"
@@ -93,15 +115,19 @@ const MainLink = ({
             ))}
         </Group>
       </UnstyledButton>
+
       {hasSubItems && (
         <Collapse in={isOpen}>
           <div className="ml-4">
             {subItems.map((subItem) => (
               <UnstyledButton
                 key={subItem.link}
-                onClick={() => onClick(subItem.link)}
+                onClick={() => {
+                  onClick(subItem.link);
+                  setActiveSubMenu(subItem.link);
+                }}
                 className={`w-full p-2 rounded-sm transition-colors duration-200 ${
-                  isActive === subItem.link
+                  isSubMenuActive === subItem.link
                     ? "bg-primary-500 text-white"
                     : "hover:bg-secondary-700 text-secondary-200"
                 }`}
@@ -116,70 +142,17 @@ const MainLink = ({
   );
 };
 
+// Home Component (updated)
 const Home = () => {
   const [opened, { toggle }] = useDisclosure(false);
   const [activeLink, setActiveLink] = useState("/");
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [openMenus, setOpenMenus] = useState({});
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    // Here you would typically use a router to navigate
+    setActiveSubMenu(null); // Reset active submenu when parent is clicked
     console.log(`Navigating to: ${link}`);
-  };
-
-  const handleMenuClick = (item) => {
-    if (item.subItems) {
-      setOpenMenus((prev) => ({ ...prev, [item.label]: !prev[item.label] }));
-    } else {
-      handleLinkClick(item.link);
-    }
-  };
-
-  const renderContent = () => {
-    return (
-      <Box p="md">
-        <Text size="xl" fw={700} mb="lg" className="text-secondary-900">
-          {activeLink === "/"
-            ? "Dashboard"
-            : activeLink.split("/").pop().charAt(0).toUpperCase() +
-              activeLink.split("/").pop().slice(1)}
-        </Text>
-        {activeLink === "/" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { icon: IconDashboard, label: "Total Users", value: "3" },
-              { icon: IconPhoto, label: "Total Photos", value: "9" },
-              { icon: IconStethoscope, label: "Appointments", value: "15" },
-            ].map((stat, index) => (
-              <Box key={index} className="bg-white p-4 rounded-lg shadow-md">
-                <Group>
-                  <Box className="bg-primary-100 p-3 rounded-full">
-                    <stat.icon
-                      size={rem(24)}
-                      stroke={1.5}
-                      className="text-primary-600"
-                    />
-                  </Box>
-                  <div>
-                    <Text c="dimmed" size="xs" tt="uppercase" fw={700}>
-                      {stat.label}
-                    </Text>
-                    <Text fw={700} size="xl" className="text-secondary-800">
-                      {stat.value}
-                    </Text>
-                  </div>
-                </Group>
-              </Box>
-            ))}
-          </div>
-        )}
-        {activeLink !== "/" && (
-          <Text className="text-secondary-700">
-            Content for {activeLink} goes here.
-          </Text>
-        )}
-      </Box>
-    );
   };
 
   return (
@@ -213,18 +186,11 @@ const Home = () => {
                 (item.subItems &&
                   item.subItems.some((sub) => sub.link === activeLink))
               }
+              isSubMenuActive={activeSubMenu}
               isOpen={openMenus[item.label]}
-              onClick={(link) => {
-                if (item.subItems) {
-                  setOpenMenus((prev) => ({
-                    ...prev,
-                    [item.label]: !prev[item.label],
-                  }));
-                } else {
-                  handleLinkClick(link);
-                }
-                if (link) handleLinkClick(link);
-              }}
+              onClick={(link) => handleLinkClick(link)}
+              setOpenMenus={setOpenMenus}
+              setActiveSubMenu={setActiveSubMenu}
             />
           ))}
         </div>
@@ -236,7 +202,20 @@ const Home = () => {
       </AppShell.Navbar>
 
       <AppShell.Main className="bg-secondary-50">
-        {renderContent()}
+        <Box p="md">
+          <Text size="xl" fw={700} mb="lg" className="text-secondary-900">
+            {activeLink === "/"
+              ? "Dashboard"
+              : activeLink.split("/").pop().charAt(0).toUpperCase() +
+                activeLink.split("/").pop().slice(1)}
+          </Text>
+          {activeLink === "/" && <Dashboard />}
+          {activeLink !== "/" && (
+            <Text className="text-secondary-700">
+              Content for {activeLink} goes here.
+            </Text>
+          )}
+        </Box>
       </AppShell.Main>
     </AppShell>
   );
