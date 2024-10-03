@@ -34,7 +34,12 @@ const menuItems = [
     subItems: [
       { label: "General", link: "/settings/general" },
       { label: "Security", link: "/settings/security" },
-      { label: "Website Configurations", link: "/settings/website-configurations" },
+      {
+        label: "Website Configurations",
+        link: "/settings/website-configurations",
+      }, // NEW
+      { label: "Contact Information", link: "/settings/contact-info" }, // NEW
+      { label: "SEO Settings", link: "/settings/seo" }, // NEW
     ],
   },
   { icon: IconMail, label: "Email Configuration", link: "/email" },
@@ -50,14 +55,20 @@ const menuItems = [
       { label: "Elements", link: "/sections/elements" },
       { label: "Pricing", link: "/sections/pricing" },
       { label: "FAQ", link: "/sections/faq" },
+      { label: "Hero Section", link: "/sections/hero" }, // NEW
+      { label: "Our Story", link: "/sections/our-story" }, // NEW
+      { label: "Services/Programs", link: "/sections/programs" }, // NEW
+      { label: "Testimonials", link: "/sections/testimonials" }, // NEW
     ],
   },
   { icon: IconPhoto, label: "Photo and Video", link: "/media" },
   { icon: IconAd, label: "Advertisement", link: "/ads" },
   { icon: IconUpload, label: "File Upload (Media)", link: "/upload" },
   { icon: IconBrandFacebook, label: "Social Media", link: "/social" },
+  { icon: IconFileText, label: "Appointments", link: "/appointments" }, // NEW
 ];
 
+// MainLink Component (updated)
 // MainLink Component (updated)
 const MainLink = ({
   icon: Icon,
@@ -84,6 +95,9 @@ const MainLink = ({
 }) => {
   const hasSubItems = subItems && subItems.length > 0;
 
+  // Check if any submenu is active
+  const isAnySubmenuActive = subItems.some((subItem) => subItem.link === isSubMenuActive);
+
   return (
     <>
       <UnstyledButton
@@ -95,10 +109,10 @@ const MainLink = ({
           }
         }}
         className={`w-full p-3 rounded-sm transition-colors duration-200 ${
-          isActive
+          isActive || isAnySubmenuActive
             ? "bg-primary-600 text-white"
             : "hover:bg-secondary-800 text-secondary-100"
-        }`}
+        } ${isAnySubmenuActive ? "bg-secondary-800" : ""}`}  // Apply bg-primary-300 if submenu is active
       >
         <Group justify="space-between" align="center">
           <Group>
