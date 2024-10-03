@@ -9,7 +9,7 @@ import { theme as baseTheme } from "@repo/theme/mantine";
 
 import { Notifications } from "@mantine/notifications";
 import { Suspense } from "react";
-import RootPortalLayout from "./components/layout";
+import RootAdminLayout from "./components/layout";
 
 interface RootStyleRegistryProps {
   readonly children: React.ReactNode;
@@ -25,7 +25,7 @@ export default function RootStyleRegistry({
       <ColorSchemeScript />
       <Notifications position="top-right" />
       <Suspense fallback={<Loader />}>
-        <RootPortalLayout>{children}</RootPortalLayout>
+        <RootAdminLayout>{children}</RootAdminLayout>
       </Suspense>
     </MantineProvider>
   );

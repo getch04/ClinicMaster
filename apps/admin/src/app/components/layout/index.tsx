@@ -1,19 +1,12 @@
 "use client";
-import {
-  AppShell,
-  Burger,
-  Group,
-  Loader,
-  ScrollArea,
-  Skeleton,
-  Text,
-} from "@mantine/core";
+import { AppShell, Loader } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useIsMounted } from "src/shared";
 
-const RootPortalLayout = ({ children }: { children: React.ReactNode }) => {
+const RootAdminLayout = ({ children }: { children: React.ReactNode }) => {
   const mounted = useIsMounted();
-  const [opened, { toggle }] = useDisclosure();
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
   if (!mounted) {
     return (
@@ -23,44 +16,48 @@ const RootPortalLayout = ({ children }: { children: React.ReactNode }) => {
     );
   } else {
     return (
-      <AppShell
-        header={{ height: 60 }}
-        navbar={{
-          width: 300,
-          breakpoint: "sm",
-          collapsed: { mobile: !opened },
-        }}
-        padding="md"
-      >
-        <AppShell.Header>
-          <Group h="100%" px="md">
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="sm"
-              size="sm"
-            />
-            <Text className="font-bold">CLINIC</Text>
-          </Group>
-        </AppShell.Header>
-        <AppShell.Navbar p="md">
-          <AppShell.Section>Navbar header</AppShell.Section>
-          <AppShell.Section grow my="md" component={ScrollArea}>
-            60 links in a scrollable section
-            {Array(60)
-              .fill(0)
-              .map((_, index) => (
-                <Skeleton key={index} h={28} mt="sm" animate={false} />
-              ))}
-          </AppShell.Section>
-          <AppShell.Section>
-            Navbar footer – always at the bottom
-          </AppShell.Section>
-        </AppShell.Navbar>
-        <AppShell.Main>Main</AppShell.Main>
+      <AppShell className="flex flex-col min-h-screen">
+        <div>{children}</div>
       </AppShell>
+
+      //   <AppShell
+      //     header={{ height: 60 }}
+      //     navbar={{
+      //       width: 300,
+      //       breakpoint: "sm",
+      //       collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
+      //     }}
+      //     padding="md"
+      //   >
+      //     <AppShell.Header>
+      //       <Group h="100%" px="md">
+      //         <Burger
+      //           opened={mobileOpened}
+      //           onClick={toggleMobile}
+      //           hiddenFrom="sm"
+      //           size="sm"
+      //         />
+      //         <Burger
+      //           opened={desktopOpened}
+      //           onClick={toggleDesktop}
+      //           visibleFrom="sm"
+      //           size="sm"
+      //         />
+      //         <Text className="text-primary-900">CLINIC</Text>
+      //       </Group>
+      //     </AppShell.Header>
+      //     <AppShell.Navbar p="md">
+      //       Navbar
+      //       {Array(15)
+      //         .fill(0)
+      //         .map((_, index) => (
+      //           <Skeleton key={index} h={28} mt="sm" animate={false} />
+      //         ))}
+      //     </AppShell.Navbar>
+      //     <AppShell.Main>Main</AppShell.Main>
+      //   </AppShell>
     );
   }
 };
 
-export default RootPortalLayout;
+export default RootAdminLayout;
