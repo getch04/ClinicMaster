@@ -4,71 +4,21 @@ import {
   Box,
   Collapse,
   Group,
+  ScrollArea,
   Text,
   UnstyledButton,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
-  IconAd,
-  IconBrandFacebook,
   IconChevronDown,
   IconChevronRight,
-  IconComponents,
-  IconDashboard,
-  IconFileText,
-  IconMail,
-  IconMenu2,
-  IconPhoto,
-  IconSettings,
-  IconUpload,
+  IconMenu2
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { Dashboard } from "./components";
+import menuItems from "./components/dashboard/menu_items";
 
-// Menu Items
-const menuItems = [
-  { icon: IconDashboard, label: "Dashboard", link: "/" },
-  {
-    icon: IconSettings,
-    label: "Settings",
-    subItems: [
-      { label: "General", link: "/settings/general" },
-      { label: "Security", link: "/settings/security" },
-      {
-        label: "Website Configurations",
-        link: "/settings/website-configurations",
-      }, // NEW
-      { label: "Contact Information", link: "/settings/contact-info" }, // NEW
-      { label: "SEO Settings", link: "/settings/seo" }, // NEW
-    ],
-  },
-  { icon: IconMail, label: "Email Configuration", link: "/email" },
-  { icon: IconFileText, label: "Page", link: "/page" },
-  { icon: IconMenu2, label: "Menu", link: "/menu" },
-  {
-    icon: IconComponents,
-    label: "Sections",
-    subItems: [
-      { label: "Captcha", link: "/sections/captcha" },
-      { label: "News", link: "/sections/news" },
-      { label: "Doctor", link: "/sections/doctor" },
-      { label: "Elements", link: "/sections/elements" },
-      { label: "Pricing", link: "/sections/pricing" },
-      { label: "FAQ", link: "/sections/faq" },
-      { label: "Hero Section", link: "/sections/hero" }, // NEW
-      { label: "Our Story", link: "/sections/our-story" }, // NEW
-      { label: "Services/Programs", link: "/sections/programs" }, // NEW
-      { label: "Testimonials", link: "/sections/testimonials" }, // NEW
-    ],
-  },
-  { icon: IconPhoto, label: "Photo and Video", link: "/media" },
-  { icon: IconAd, label: "Advertisement", link: "/ads" },
-  { icon: IconUpload, label: "File Upload (Media)", link: "/upload" },
-  { icon: IconBrandFacebook, label: "Social Media", link: "/social" },
-  { icon: IconFileText, label: "Appointments", link: "/appointments" }, // NEW
-];
 
-// MainLink Component (updated)
 // MainLink Component (updated)
 const MainLink = ({
   icon: Icon,
@@ -96,14 +46,16 @@ const MainLink = ({
   const hasSubItems = subItems && subItems.length > 0;
 
   // Check if any submenu is active
-  const isAnySubmenuActive = subItems.some((subItem) => subItem.link === isSubMenuActive);
+  const isAnySubmenuActive = subItems.some(
+    (subItem) => subItem.link === isSubMenuActive
+  );
 
   return (
     <>
       <UnstyledButton
         onClick={() => {
           if (hasSubItems) {
-            setOpenMenus((prev) => ({ ...prev, [label]: !isOpen }));
+            setOpenMenus((prev: any) => ({ ...prev, [label]: !isOpen }));
           } else {
             onClick(link);
           }
@@ -112,7 +64,7 @@ const MainLink = ({
           isActive || isAnySubmenuActive
             ? "bg-primary-600 text-white"
             : "hover:bg-secondary-800 text-secondary-100"
-        } ${isAnySubmenuActive ? "bg-secondary-800" : ""}`}  // Apply bg-primary-300 if submenu is active
+        } ${isAnySubmenuActive ? "bg-secondary-800" : ""}`} // Apply bg-primary-300 if submenu is active
       >
         <Group justify="space-between" align="center">
           <Group>
@@ -161,11 +113,11 @@ const Home = () => {
   const [opened, { toggle }] = useDisclosure(false);
   const [activeLink, setActiveLink] = useState("/");
   const [activeSubMenu, setActiveSubMenu] = useState(null);
-  const [openMenus, setOpenMenus] = useState({});
+  const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
 
-  const handleLinkClick = (link) => {
+  const handleLinkClick = (link: string) => {
     setActiveLink(link);
-    setActiveSubMenu(null); // Reset active submenu when parent is clicked
+    setActiveSubMenu(null);
     console.log(`Navigating to: ${link}`);
   };
 
@@ -179,36 +131,27 @@ const Home = () => {
         <Text c="primary" size="xl" fw={700}>
           Dental Clinic
         </Text>
-        <Group>
-          <Text c="secondary-100" size="lg" className="text-white">
-            Admin Panel
-          </Text>
-          <UnstyledButton onClick={toggle} className="md:hidden">
-            <IconMenu2 color="white" />
-          </UnstyledButton>
-        </Group>
+        <UnstyledButton onClick={toggle} className="md:hidden">
+          <IconMenu2 color="white" />
+        </UnstyledButton>
       </AppShell.Header>
 
       <AppShell.Navbar p="xs" className="bg-secondary-900 flex flex-col">
-        <div className="flex-grow">
+        <ScrollArea className="flex-grow">
           {menuItems.map((item) => (
             <MainLink
               key={item.label}
               {...item}
-              isActive={
-                activeLink === item.link ||
-                (item.subItems &&
-                  item.subItems.some((sub) => sub.link === activeLink))
-              }
+              isActive={activeLink === item.link || (item.subItems && item.subItems.some((sub) => sub.link === activeLink))}
               isSubMenuActive={activeSubMenu}
               isOpen={openMenus[item.label]}
-              onClick={(link) => handleLinkClick(link)}
+              onClick={handleLinkClick}
               setOpenMenus={setOpenMenus}
               setActiveSubMenu={setActiveSubMenu}
             />
           ))}
-        </div>
-        <Box className="border-t border-white pt-4 mt-4">
+        </ScrollArea>
+        <Box className="border-t border-white pt-4 mt-4 sticky bottom-0 bg-secondary-900">
           <Text size="xs" c="secondary-300" className="text-center text-white">
             © 2024 Dental Clinic Admin
           </Text>
@@ -220,8 +163,8 @@ const Home = () => {
           <Text size="xl" fw={700} mb="lg" className="text-secondary-900">
             {activeLink === "/"
               ? "Dashboard"
-              : activeLink.split("/").pop().charAt(0).toUpperCase() +
-                activeLink.split("/").pop().slice(1)}
+              : (activeLink.split("/").pop()?.charAt(0).toUpperCase() || '') +
+                activeLink.split("/").pop()?.slice(1) || ''}
           </Text>
           {activeLink === "/" && <Dashboard />}
           {activeLink !== "/" && (
