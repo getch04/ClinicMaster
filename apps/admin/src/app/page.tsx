@@ -1,4 +1,5 @@
 "use client";
+
 import {
   AppShell,
   Box,
@@ -12,14 +13,20 @@ import { useDisclosure } from "@mantine/hooks";
 import {
   IconChevronDown,
   IconChevronRight,
-  IconMenu2,
+  IconMenu2 as IconMenu,
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { Dashboard } from "./components";
 import menuItems from "./components/dashboard/menu_items";
-import Hero from "./website/hero/page";
 
-// MainLink Component (updated)
+// Example Components for other pages (replace these with actual components)
+const Appointments = () => <Text>Appointments Page Content</Text>;
+const Patients = () => <Text>Patients Page Content</Text>;
+const Staff = () => <Text>Staff Page Content</Text>;
+const Billing = () => <Text>Billing Page Content</Text>;
+// Add more components as needed
+
+// MainLink Component
 const MainLink = ({
   icon: Icon,
   label,
@@ -118,7 +125,39 @@ const Home = () => {
   const handleLinkClick = (link: string) => {
     setActiveLink(link);
     setActiveSubMenu(null);
-    console.log(`Navigating to: ${link}`);
+    // No URL change or redirection
+  };
+
+  const getTitleFromPath = (path: string) => {
+    if (path === "/") return "Dashboard";
+    const parts = path.split("/");
+    return parts
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" > ");
+  };
+
+  const renderContent = () => {
+    switch (activeLink) {
+      case "/appointments/schedule":
+      case "/appointments/calendar":
+      case "/appointments/reminders":
+        return <Appointments />;
+      case "/patients/list":
+      case "/patients/records":
+      case "/patients/treatment-plans":
+        return <Patients />;
+      case "/staff/dentists":
+      case "/staff/hygienists":
+      case "/staff/assistants":
+      case "/staff/receptionists":
+        return <Staff />;
+      case "/billing/invoices":
+      case "/billing/payments":
+      case "/billing/insurance-claims":
+        return <Billing />;
+      default:
+        return <Dashboard />;
+    }
   };
 
   return (
@@ -136,7 +175,7 @@ const Home = () => {
           Dental Clinic
         </Text>
         <UnstyledButton onClick={toggle} className="md:hidden">
-          <IconMenu2 color="white" />
+          <IconMenu color="white" />
         </UnstyledButton>
       </AppShell.Header>
 
@@ -169,15 +208,11 @@ const Home = () => {
       <AppShell.Main className="bg-secondary-50">
         <Box p="md">
           <Text size="xl" fw={700} mb="lg" className="text-secondary-900">
-            {activeLink === "/"
-              ? "Dashboard"
-              : (activeLink.split("/").pop()?.charAt(0).toUpperCase() || "") +
-                  activeLink.split("/").pop()?.slice(1) || ""}
+            {getTitleFromPath(activeLink)}
           </Text>
-          {activeLink === "/" && <Dashboard />}
-          {activeLink !== "/" && (
-            <Hero />
-          )}
+
+          {/* Render content dynamically based on the path */}
+          {renderContent()}
         </Box>
       </AppShell.Main>
     </AppShell>
