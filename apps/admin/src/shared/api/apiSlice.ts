@@ -17,23 +17,44 @@ export const apiSlice = createApi({
   baseQuery: supabaseBaseQuery,
   tagTypes: ["HeroSection"],
   endpoints: (builder) => ({
-    getHeroSections: builder.query<HeroSection, GetHeroSectionsParams>({
-      query: ({ start, end, sortBy, sortOrder, filter }) => ({
-        table: "hero_sections",
-        operation: "select",
-        params: {
-          start,
-          end,
-          sortBy,
-          sortOrder,
-          filter,
-          count: "exact",
-        },
+    getHeroSections: builder.query<HeroSection[], void>({
+      query: () => ({
+        table: 'hero_sections',
+        operation: 'select',
       }),
+      providesTags: ['HeroSection'],
+    }),
+    addHeroSection: builder.mutation<HeroSection, Omit<HeroSection, 'id'>>({
+      query: (heroSection) => ({
+        table: 'hero_sections',
+        operation: 'insert',
+        params: { data: heroSection },
+      }),
+      invalidatesTags: ['HeroSection'],
+    }),
+    updateHeroSection: builder.mutation<HeroSection, HeroSection>({
+      query: (heroSection) => ({
+        table: 'hero_sections',
+        operation: 'update',
+        params: { id: heroSection.id, data: heroSection },
+      }),
+      invalidatesTags: ['HeroSection'],
+    }),
+    deleteHeroSection: builder.mutation<void, string>({
+      query: (id) => ({
+        table: 'hero_sections',
+        operation: 'delete',
+        params: { id },
+      }),
+      invalidatesTags: ['HeroSection'],
     }),
   }),
 });
 
-// Export hooks for the queries and mutations
-export const { useGetHeroSectionsQuery } = apiSlice;
+export const {
+  useGetHeroSectionsQuery,
+  useAddHeroSectionMutation,
+  useUpdateHeroSectionMutation,
+  useDeleteHeroSectionMutation,
+} = apiSlice;
 

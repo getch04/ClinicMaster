@@ -87,6 +87,7 @@ import {
       icon: IconComponents,
       label: "Website",
       subItems: [
+        { label: "Hero", link: "/website/hero" },
         { label: "Pages", link: "/website/pages" },
         { label: "Menu", link: "/website/menu" },
         { label: "Sections", link: "/website/sections" },

@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import {
-  useReactTable,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  ColumnDef,
-  flexRender,
-  FilterFn,
-} from '@tanstack/react-table';
+'use client';
+
 import { rankItem } from '@tanstack/match-sorter-utils';
+import {
+    ColumnDef,
+    FilterFn,
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useReactTable,
+} from '@tanstack/react-table';
 import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
+import { useState } from 'react';
 
 // Define the props for our table component
 interface DataTableProps<T extends object> {
@@ -26,7 +28,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-export function DynamicAdminTable<T extends object>({
+export function DynamicTable<T extends object>({
   data,
   columns,
   showGlobalFilter = true,

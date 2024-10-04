@@ -12,12 +12,12 @@ import { useDisclosure } from "@mantine/hooks";
 import {
   IconChevronDown,
   IconChevronRight,
-  IconMenu2
+  IconMenu2,
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { Dashboard } from "./components";
 import menuItems from "./components/dashboard/menu_items";
-
+import Hero from "./website/hero/page";
 
 // MainLink Component (updated)
 const MainLink = ({
@@ -64,7 +64,7 @@ const MainLink = ({
           isActive || isAnySubmenuActive
             ? "bg-primary-600 text-white"
             : "hover:bg-secondary-800 text-secondary-100"
-        } ${isAnySubmenuActive ? "bg-secondary-800" : ""}`} // Apply bg-primary-300 if submenu is active
+        } ${isAnySubmenuActive ? "bg-secondary-800" : ""}`}
       >
         <Group justify="space-between" align="center">
           <Group>
@@ -124,7 +124,11 @@ const Home = () => {
   return (
     <AppShell
       padding="md"
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened },
+      }}
       header={{ height: 60 }}
     >
       <AppShell.Header className="bg-secondary-800 flex justify-between items-center px-4">
@@ -142,7 +146,11 @@ const Home = () => {
             <MainLink
               key={item.label}
               {...item}
-              isActive={activeLink === item.link || (item.subItems && item.subItems.some((sub) => sub.link === activeLink))}
+              isActive={
+                activeLink === item.link ||
+                (item.subItems &&
+                  item.subItems.some((sub) => sub.link === activeLink))
+              }
               isSubMenuActive={activeSubMenu}
               isOpen={openMenus[item.label]}
               onClick={handleLinkClick}
@@ -163,14 +171,12 @@ const Home = () => {
           <Text size="xl" fw={700} mb="lg" className="text-secondary-900">
             {activeLink === "/"
               ? "Dashboard"
-              : (activeLink.split("/").pop()?.charAt(0).toUpperCase() || '') +
-                activeLink.split("/").pop()?.slice(1) || ''}
+              : (activeLink.split("/").pop()?.charAt(0).toUpperCase() || "") +
+                  activeLink.split("/").pop()?.slice(1) || ""}
           </Text>
           {activeLink === "/" && <Dashboard />}
           {activeLink !== "/" && (
-            <Text className="text-secondary-700">
-              Content for {activeLink} goes here.
-            </Text>
+            <Hero />
           )}
         </Box>
       </AppShell.Main>
