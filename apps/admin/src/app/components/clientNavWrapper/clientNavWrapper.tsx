@@ -1,30 +1,40 @@
-'use client';
+"use client";
 
+import { Collapse, Group, Text, UnstyledButton } from "@mantine/core";
 import {
-    Collapse,
-    Group,
-    Text,
-    UnstyledButton,
-} from "@mantine/core";
-import {
-    IconChevronDown,
-    IconChevronRight,
+  IconChevronDown,
+  IconChevronRight,
+  TablerIcon,
 } from "@tabler/icons-react";
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface MainLinkProps {
+  icon: TablerIcon;
+  label: string;
+  link?: string;
+  subItems?: { link: string; label: string }[];
+  isActive: boolean;
+  isSubMenuActive: string | null;
+  isOpen: boolean;
+  setOpenMenus: React.Dispatch<
+    React.SetStateAction<{ [key: string]: boolean }>
+  >;
+  setActiveSubMenu: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 const MainLink = ({
   icon: Icon,
   label,
-  link = "",
+  link,
   subItems = [],
   isActive,
   isSubMenuActive,
   isOpen,
   setOpenMenus,
   setActiveSubMenu,
-}) => {
+}: MainLinkProps) => {
   const hasSubItems = subItems && subItems.length > 0;
   const pathname = usePathname();
 
@@ -88,9 +98,20 @@ const MainLink = ({
   );
 };
 
-const ClientNavWrapper = ({ menuItems }) => {
-  const [activeSubMenu, setActiveSubMenu] = useState(null);
-  const [openMenus, setOpenMenus] = useState({});
+interface MenuItem {
+  icon: TablerIcon;
+  label: string;
+  link?: string;
+  subItems?: { link: string; label: string }[];
+}
+
+interface ClientNavWrapperProps {
+  menuItems: MenuItem[];
+}
+
+const ClientNavWrapper = ({ menuItems }: ClientNavWrapperProps) => {
+  const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
+  const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
   const pathname = usePathname();
 
   useEffect(() => {
@@ -105,7 +126,7 @@ const ClientNavWrapper = ({ menuItems }) => {
           {...item}
           isActive={pathname === item.link}
           isSubMenuActive={activeSubMenu}
-          isOpen={openMenus[item.label]}
+          isOpen={openMenus[item.label] ?? false}
           setOpenMenus={setOpenMenus}
           setActiveSubMenu={setActiveSubMenu}
         />

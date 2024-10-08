@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import { Box, Text } from "@mantine/core";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 const ClientPageWrapper = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
